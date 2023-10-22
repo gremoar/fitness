@@ -1,0 +1,1335 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #ffffff;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 40' width='80' height='40'%3E%3Cpath fill='%23aa2c2c' fill-opacity='0.09' d='M0 40a19.96 19.96 0 0 1 5.9-14.11 20.17 20.17 0 0 1 19.44-5.2A20 20 0 0 1 20.2 40H0zM65.32.75A20.02 20.02 0 0 1 40.8 25.26 20.02 20.02 0 0 1 65.32.76zM.07 0h20.1l-.08.07A20.02 20.02 0 0 1 .75 5.25 20.08 20.08 0 0 1 .07 0zm1.94 40h2.53l4.26-4.24v-9.78A17.96 17.96 0 0 0 2 40zm5.38 0h9.8a17.98 17.98 0 0 0 6.67-16.42L7.4 40zm3.43-15.42v9.17l11.62-11.59c-3.97-.5-8.08.3-11.62 2.42zm32.86-.78A18 18 0 0 0 63.85 3.63L43.68 23.8zm7.2-19.17v9.15L62.43 2.22c-3.96-.5-8.05.3-11.57 2.4zm-3.49 2.72c-4.1 4.1-5.81 9.69-5.13 15.03l6.61-6.6V6.02c-.51.41-1 .85-1.48 1.33zM17.18 0H7.42L3.64 3.78A18 18 0 0 0 17.18 0zM2.08 0c-.01.8.04 1.58.14 2.37L4.59 0H2.07z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+
+header {
+    /* El darle el mismo alto que alto de línea al header logramos que el texto de la h1 quede centrada verticalmente. 
+    
+    Al ajustar el alto al header el nav no entrará pero no es problema ya que lo vamos a trabajar con posicionamiento absoluto. */
+    background: transparent;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    color: white;
+    margin-bottom: 1.25rem;
+    justify-content: center;
+}
+
+.Logo1 img {
+    width: 300x;
+    height: 100px;
+}
+
+h2 {
+    margin-bottom: 1.2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.4rem;
+}
+
+section p:last-of-type {
+    margin: 0;
+}
+
+section {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+section:last-of-type {
+    margin-bottom: 1.25rem;
+}
+/* Para que no se apliquen las reglas para el botón hamburguesa en pc las ponemos dentro de una consulta max-width que afecte solo a celular y tablet (hasta 991px ya que la query de pc comienza a aplicarse a partir de 992px). */
+
+@media screen and (max-width: 991px) {
+
+    /* El nav ocupa todo el ancho del body y se posiciona absoluto en el vértice superior izquierdo de la ventana. */
+
+    nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    /* Sacamos la viñeta del botón y el texto (del vínculo) para que solo se vea la imagen de la hamburguesa que tendrán como fondo los vínculos. 
+    
+    Vamos a generar un botón cuadrado con rem como unidad de medida para que pueda agrandarse o achicarse dependiendo de la decisión del usuario en cuanto al tamaño de fuente por default de su browser. 
+    
+    Ese tamaño será de 2.5rem x 2.5rem, entonces como el alto del header es 4em le damos un margen superior de 0.75rem para que quede centrado verticalmente. 
+    
+    El alto se lo damos al vínculo ya que hará crecer por default al li pero el ancho lo damos al li para limitar el ancho del vínculo que trabajará en bloque en su interior. */
+
+    #hamburguesa li {
+        list-style: none;
+        text-indent: -100px;
+        overflow: hidden;
+        margin-top: .75rem;
+        width: 2.5rem;
+    }
+
+    /* El vínculo es la "cara visible" del botón, por lo que es el que lleva la img de fondo de la hamburguesa. 
+    
+    En este caso se lo aplicamos a ambos botones (abrir y cerrar) aunque podrían tener una distinta cada uno (la X de cierre, por ejemplo). 
+    
+    Con background-cover hacemos que la img cubra completamente el fondo del botón escalando la imagen de fondo ya sea agrandándola o achicándola. */
+
+    #hamburguesa li a {
+        background: url("imagenes/menu.png") no-repeat center center;
+        background-size: cover;
+        display: block;
+        height: 2.5rem;
+    }
+
+    /* Ocultamos el botón cerrar. */
+
+    #hamburguesa li:last-child {
+        display: none;
+    }
+
+    /* Con el nav el target (presionamos el botón abrir de hamburguesa), hacemos "entrar" la barra de navegación al cambiar el valor de left a cero. 
+    
+    También ocultamos el botón abrir y mostramos el de cerrar. */
+
+    nav:target #barra {
+        left: 0;
+    }
+
+    nav:target #hamburguesa li:first-child {
+        display: none;
+    }
+
+    nav:target #hamburguesa li:last-child {
+        display: block;
+    }
+
+    /* Ajustamos el tamaño de la barra de navegación (todo el ancho del body el alto disponible del viewport que es el 100vh menos el alto de 4rem del header). 
+    
+    La posicionamos absoluta para poder ajustar la propiedad left para desplazarla y que no quede como una tapa invisible del contenido si estuviera relative o static. 
+    
+    La desplazamos el tamaño de alto del header desde el top para que no tape al botón de cierre. 
+    
+    Por último, le damos un left negativo del mismo ancho de viewport para sacarla totalmente de la pantalla y le aplicamos un efecto de entrada y salida. */
+
+    #barra {
+        width: 200%;
+        height: calc(323vh - 4rem);
+        position: absolute;
+        top: 4rem;
+        left: -200vw;
+        background: #F36;
+        transition: left .5s ease;
+        z-index: 1;
+    }
+
+    /* Ajustamos el estilo de los botones de la barra (este estilo puede cambiar de acuerdo a las necesidades). */
+
+    #barra li {
+        list-style: none;
+        border-bottom: 3px solid grey;
+    }
+
+    #barra li a {
+        text-decoration: none;
+        display: block;
+        background: #F9F;
+        color: black;
+        text-align: left;
+        line-height: 5rem;
+        padding: 0 1.25rem;
+    }
+}
+
+@media screen and (min-width: 320px) and (min-height:480px) {
+
+    
+
+    .contener {
+        width: 1300px;
+      margin: auto;
+    
+      }
+
+     
+    .total {
+        display: inline-block;
+    }
+
+    .container {
+        background-color: #000000;
+        padding: 100px;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 10px;
+    }
+    .container h2 {
+       padding: 5px;
+        
+    }
+    .container p {
+        padding: 6px;
+    }
+
+    .container2 {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container2 img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 100px;
+        
+    }
+    .container2 h2 {
+       padding: 5px;
+        
+    }
+    .container2 p {
+        padding: 6px;
+    }
+
+    .container3 {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container3 img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 10px;
+    }
+    .container3 h2 {
+       padding: 5px;
+        
+    }
+    .container3 p {
+        padding: 6px;
+    }
+
+    .info
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    display: inline-block;
+    text-align: right;
+}
+
+.info p
+{
+    color: #fff;
+}
+.info span {
+
+    float:left;
+    width:30%;
+    padding-right: 100px;
+    justify-content: center;
+}
+
+.info span p {
+  padding-right: 20px;
+   width: 60%;
+ 
+}
+
+.info span h1 {
+    padding-right: 100px;
+ 
+}
+.info span a {
+    padding-right: 55px;
+ 
+}
+
+a{
+    text-decoration: none;
+    color: #aaa;
+}
+footer
+{
+  background-color: #ffffff;
+ padding-top: 1%;
+ padding-bottom: 1%;
+ color: #aaa;
+ text-align: center;
+}
+
+}
+
+
+.titulo1
+{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    color: #000000;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.contenedor
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 60px;
+    
+}
+
+.texto1
+{
+    background-color: #a80000;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #ffffff;
+    
+}
+
+.texto2
+{
+    display: flex;
+    justify-content: left;
+    padding-right: 200px;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.caja 
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+
+/* .brocoli img 
+{
+
+} */
+
+.caja2
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.caja3
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.contenedor3
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 60px;
+    
+}
+
+.texto3
+{
+    background-color: #a80000;
+    border-radius: 10px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #ffffff;
+}
+
+.texto4
+{
+    display: flex;
+    justify-content: left;
+    padding-right: 200px;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.caja4 
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.caja5
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;  
+}
+
+.caja6
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.copy
+{
+    background-color: #007d23;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+}
+
+.info
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.info a
+{
+    color: #fff;
+}
+
+.ig img
+{
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+}
+
+.mail img
+{
+    width: 35px;
+    height: 35px;
+}
+
+.tel img
+{
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+}
+
+.texto5
+{
+background-color: #a80000; opacity: 75%;
+margin-right: 100px;
+margin-bottom: 10px;
+border-radius: 10px;
+padding: 10px;
+color: #ffffff;
+}
+
+.PartVideo{
+    
+    padding: 1.25rem;
+    border: 2px solid black;
+    margin: auto;
+}
+.video{ 
+    background-color: rgb(85, 85, 85);
+    text-align: center;
+    width: calc(100vw - 2.5rem);
+    height: calc((100vw - 2.5rem) * 315 / 560);
+    max-width: 560px;
+    max-height: 315px;
+    margin: auto;
+}
+
+.contV{
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.foto-mini{
+    width: 100px;
+    height: 100px;
+}
+  
+
+.Gallery{
+    text-align: center;
+}
+/* Estilos para tablet. */
+
+@media screen and (min-width: 576px) {
+
+
+    .contener {
+        width: 1300px;
+      margin: auto;
+    
+      }
+
+     
+    .total {
+        display: inline-block;
+    }
+
+    .container {
+        background-color: #000000;
+        padding: 100px;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 10px;
+    }
+    .container h2 {
+       padding: 5px;
+        
+    }
+    .container p {
+        padding: 6px;
+    }
+
+    .container2 {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container2 img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 100px;
+        
+    }
+    .container2 h2 {
+       padding: 5px;
+        
+    }
+    .container2 p {
+        padding: 6px;
+    }
+
+    .container3 {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container3 img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 10px;
+    }
+    .container3 h2 {
+       padding: 5px;
+        
+    }
+    .container3 p {
+        padding: 6px;
+    }
+
+    .info
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    display: inline-block;
+    text-align: right;
+}
+
+.info p
+{
+    color: #fff;
+}
+.info span {
+
+    float:left;
+    width:30%;
+    padding-right: 100px;
+    justify-content: center;
+}
+
+.info span p {
+  padding-right: 20px;
+   width: 60%;
+ 
+}
+
+.info span h1 {
+    padding-right: 100px;
+ 
+}
+.info span a {
+    padding-right: 55px;
+ 
+}
+
+a{
+    text-decoration: none;
+    color: #aaa;
+}
+footer
+{
+  background-color: #ffffff;
+ padding-top: 1%;
+ padding-bottom: 1%;
+ color: #aaa;
+ text-align: center;
+}
+
+}
+
+
+.titulo1
+{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    color: #000000;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.contenedor
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 60px;
+    
+}
+
+.texto1
+{
+    background-color: #a80000;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #ffffff;
+    
+}
+
+.texto2
+{
+    display: flex;
+    justify-content: left;
+    padding-right: 200px;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.caja 
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+
+/* .brocoli img 
+{
+
+} */
+
+.caja2
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.caja3
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.contenedor3
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 60px;
+    
+}
+
+.texto3
+{
+    background-color: #a80000;
+    border-radius: 10px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #ffffff;
+}
+
+.texto4
+{
+    display: flex;
+    justify-content: left;
+    padding-right: 200px;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.caja4 
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.caja5
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;  
+}
+
+.caja6
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.copy
+{
+    background-color: #007d23;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+}
+
+.info
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.info a
+{
+    color: #fff;
+}
+
+.ig img
+{
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+}
+
+.mail img
+{
+    width: 35px;
+    height: 35px;
+}
+
+.tel img
+{
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+}
+
+.texto5
+{
+background-color: #a80000; opacity: 75%;
+margin-right: 100px;
+margin-bottom: 10px;
+border-radius: 10px;
+padding: 10px;
+color: #ffffff;
+}
+
+.PartVideo{
+    
+    padding: 1.25rem;
+    border: 2px solid black;
+    margin: auto;
+}
+.video{ 
+    background-color: rgb(85, 85, 85);
+    text-align: center;
+    width: calc(100vw - 2.5rem);
+    height: calc((100vw - 2.5rem) * 315 / 560);
+    max-width: 560px;
+    max-height: 315px;
+    margin: auto;
+}
+
+.contV{
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.foto-mini{
+    width: 100px;
+    height: 100px;
+}
+  
+
+.Gallery{
+    text-align: center;
+}
+/* Estilos para pc. */
+
+@media screen and (min-width: 992px) {
+
+  .contener {
+    width: 1300px;
+  margin: auto;
+
+  }
+
+    #hamburguesa {
+        display: none;
+    }
+
+    /* Reseteamos el alto del header que le dimos en mobile para que crezca ahora de acuerdo a su contenido como cualquier caja de bloque. */
+
+    header {
+        height: auto;
+        margin: auto;
+        padding: 1.25rem;
+        display: flex;                
+        align-items: center;
+    }
+
+
+    /* Repartimos el ancho de la section en partes iguales para cada párrafo, como vamos a tener una separación de 1rem entre ellos (por el gap) al 100% le restamos esos 3rem y al resultado lo dividimos por 4. */
+
+    section p {
+        width: calc((100% - 3rem) / 4);
+    }
+
+    .shift {
+        width: 100%;
+        margin: 0 auto;
+        background: #007d23;
+        padding-top: 0.1%;
+        padding-bottom: 0.1%;
+        box-shadow: 0px 5px 0px hsl(115, 100%, 18%);
+      }
+      .shift ul {
+        list-style: none;
+        text-align: center;
+      }
+      .shift ul li {
+        display: inline-block;
+      }
+      .shift ul li a {
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin: 0 10px;
+      }
+      .shift ul li a,
+      .shift ul li a:after,
+      .shift ul li a:before {
+        transition: all .5s;
+      }
+      .shift ul li a:hover {
+        color: #009a3b;
+      }
+    
+    
+    .shift ul li a {
+        position:relative;
+        z-index: 1;
+      }
+      .shift ul li a:hover {
+        color: #91640F;
+      }
+      .shift ul li a:after {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        height: 1px;
+        content: '.';
+        color: transparent;
+        background: #69ff82;
+        visibility: none;
+        opacity: 0;
+        z-index: -1;
+      }
+      .shift ul li a:hover:after {
+        opacity: 1;
+        visibility: visible;
+        height: 100%;
+      }
+ 
+
+   
+     
+    .total {
+        display: inline-block;
+    }
+
+    .container {
+        background-color: #000000;
+        padding: 100px;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 10px;
+    }
+    .container h2 {
+       padding: 5px;
+        
+    }
+    .container p {
+        padding: 6px;
+    }
+
+    .container2 {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container2 img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 100px;
+        
+    }
+    .container2 h2 {
+       padding: 5px;
+        
+    }
+    .container2 p {
+        padding: 6px;
+    }
+
+    .container3 {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+        width: 100%;
+    }
+    .container3 img {
+        background-color: #a80000;
+        border-radius: 5px;
+        padding: 5px;
+        height: 250px;
+        margin-right: 10px;
+    }
+    .container3 h2 {
+       padding: 5px;
+        
+    }
+    .container3 p {
+        padding: 6px;
+    }
+
+    .info
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    display: inline-block;
+    text-align: right;
+}
+
+.info p
+{
+    color: #fff;
+}
+.info span {
+
+    float:left;
+    width:30%;
+    padding-right: 100px;
+    justify-content: center;
+}
+
+.info span p {
+  padding-right: 20px;
+   width: 60%;
+ 
+}
+
+.info span h1 {
+    padding-right: 100px;
+ 
+}
+.info span a {
+    padding-right: 55px;
+ 
+}
+
+a{
+    text-decoration: none;
+    color: #aaa;
+}
+footer
+{
+  background-color: #ffffff;
+ padding-top: 1%;
+ padding-bottom: 1%;
+ color: #aaa;
+ text-align: center;
+}
+
+}
+
+
+.titulo1
+{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    color: #000000;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.contenedor
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 60px;
+    
+}
+
+.texto1
+{
+    background-color: #a80000;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #ffffff;
+    
+}
+
+.texto2
+{
+    display: flex;
+    justify-content: left;
+    padding-right: 200px;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.caja 
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+
+/* .brocoli img 
+{
+
+} */
+
+.caja2
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.caja3
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.contenedor3
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 60px;
+    
+}
+
+.texto3
+{
+    background-color: #a80000;
+    border-radius: 10px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #ffffff;
+}
+
+.texto4
+{
+    display: flex;
+    justify-content: left;
+    padding-right: 200px;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.caja4 
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.caja5
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;  
+}
+
+.caja6
+{
+    width: 350px;
+    height: 250px;
+    margin-right: 25px;
+    border-radius: 5px;
+    background-color: #a80000;
+    padding: 5px;
+}
+
+.copy
+{
+    background-color: #007d23;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+}
+
+.info
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.info a
+{
+    color: #fff;
+}
+
+.ig img
+{
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+}
+
+.mail img
+{
+    width: 35px;
+    height: 35px;
+}
+
+.tel img
+{
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+}
+
+.texto5
+{
+background-color: #a80000; opacity: 75%;
+margin-right: 100px;
+margin-bottom: 10px;
+border-radius: 10px;
+padding: 10px;
+color: #ffffff;
+}
+
+.PartVideo{
+    
+    padding: 1.25rem;
+    border: 2px solid black;
+    margin: auto;
+}
+.video{ 
+    background-color: rgb(85, 85, 85);
+    text-align: center;
+    width: calc(100vw - 2.5rem);
+    height: calc((100vw - 2.5rem) * 315 / 560);
+    max-width: 560px;
+    max-height: 315px;
+    margin: auto;
+}
+
+.contV{
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.foto-mini{
+    width: 100px;
+    height: 100px;
+}
+  
+
+.Gallery{
+    text-align: center;
+}
