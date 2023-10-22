@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Galería Fancybox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINKEAMOS EL CSS DE LA GALERÍA, EN ESTE CASO LO TENEMOS COMO RECURSO LOCAL. -->
+
+    <link rel="stylesheet" href="recursos/fancybox.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        #galeria {
+            background-color: pink;
+            line-height: 0;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: center;
+            column-gap: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media screen and (max-width: 576px) {
+            #galeria {
+                flex-direction: column;
+                gap: 1rem 0;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Galería Fancybox</h1>
+
+    <div id="galeria">
+
+        <!-- Si utilizamos la galería como en el ejemplo anterior en un sitio responsive tendremos el problema que cuando el usuario esté navegando desde su celular, se cargará la img grande con tamaño pensado para pc, por lo que el gasto de datos será muy importante.
+        
+        Para evitarlo, el plugin tiene pensado un atributo que genera que se cargue la img grande (cuando hacemos click en la miniatura) de acuerdo a una query de tamaño del dispositivo. 
+        
+        Es el atributo data-media que recibe una lista de consultas de medio separadas por punto y coma. Y luego tenemos otro atributo que funciona en conjunto con éste, el atributo data-sources que recibe como valor una lista de rutas a imágenes optimizadas para los distintos tamaños de dispositivos.
+        
+        Si la primera consulta de la lista se cumple, no se evalúa ninguna consulta más y se abre la imagen de la primera ruta de la lista (la misma ubicación dentro de la lista). Si la que se cumple es la segunda consulta se abre la ruta de la segunda imagen de la lista. Y si no se cumple ninguna consulta, se abre la ruta que tenga como valor el atributo href del vínculo. Es decir que tiene un funcionamiento similar a la etiqueta picture. -->
+        
+        <a href="../imagenes/uno.jpg"
+            data-fancybox="galeria" 
+            data-caption="Título 1"
+            data-sources="../imagenes/uno_cel.jpg; ../imagenes/uno_tab.jpg"
+            data-media="(max-width: 576px);(max-width: 991px)">
+            <img src="../imagenes/miniaturas/uno_mini.jpg" alt="imagen">
+        </a>
+
+        <a href="../imagenes/dos.jpg"
+            data-fancybox="galeria" 
+            data-caption="Título 2"
+            data-sources="../imagenes/dos_cel.jpg; ../imagenes/dos_tab.jpg"
+            data-media="(max-width: 576px);(max-width: 991px)">
+
+            <img src="../imagenes/miniaturas/dos_mini.jpg" alt="imagen">
+        </a>
+
+        <a href="../imagenes/tres.jpg"
+            data-fancybox="galeria" 
+            data-caption="Título 3"
+            data-sources="../imagenes/tres_cel.jpg; ../imagenes/tres_tab.jpg"
+            data-media="(max-width: 576px);(max-width: 991px)">
+
+            <img src="../imagenes/miniaturas/tres_mini.jpg" alt="imagen">
+        </a>
+    </div>
+
+    <!-- LINKEAMOS EL JS DE LA GALERÍA, EN ESTE CASO LO TENEMOS COMO RECURSO LOCAL. ESTA GALERÍA ESTÁ PROGRAMADA EN JAVASCRIPT POR LO QUE NO NECESITA JQUERY PARA FUNCIONAR. -->
+   
+    <script src="recursos/fancybox.umd.js"></script>
+
+    <!-- CUANDO TENEMOS ESTA ESTRUCTURA EN LA QUE ABRIMOS IMÁGENES GRANDES DE ACUERDO A UNA CONSULTA, DEBEMOS INCLUIR ESTE CÓDIGO DE ACTIVACIÓN PARA QUE FUNCIONE. 
+    
+    SOBRE EL FINAL DEL CÓDIGO TAMBIÉN SE INCLUYE UNA CONFIGURACIÓN PARA CAMBIAR EL MODO EN EL QUE SE MUESTRAN LAS MINIATURAS CUANDO LA IMAGEN GRANDE ESTÁ ACTIVA, EL VALOR "modern" SE PUEDE REEMPLAZAR POR "classic" PARA MOSTRARLAS DE OTRA MANERA. -->
+    
+    <script>
+        Fancybox.bind('[data-fancybox="galeria"]', {
+            Images: {
+                content: (_ref, slide) => {
+                    let rez = "<picture>";
+                    const media = slide.media.split(";");
+                    slide.sources.split(";").map((source, index) => {
+                        rez += `<source
+                                media="${media[index] || ""}"
+                                srcset="${source}"
+                                />`;
+                    });
+                    rez += `<img src="${slide.src}" alt="" />`;
+                    rez += "</picture>";
+                    return rez;
+                },
+            },
+
+            Thumbs : {
+                type: "modern" 
+            }
+        });   
+    </script>
+</body>
+
+</html>

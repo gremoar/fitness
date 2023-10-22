@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Galería Fancybox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- LINKEAMOS EL CSS DE LA GALERÍA DESDE UN CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.13/dist/fancybox/fancybox.css">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        #galeria {
+            background-color: pink;
+
+            /* Con el alto de línea en 0 al contenedor, quitamos el pequeño espacio de separación que genera la línea por debajo de las imágenes. */
+
+            line-height: 0;
+            padding: 1.25rem;
+
+            /* Aplicando flex al contenedor podemos centrar y separar las img de una manera muy fácil. Además, como el flex-wrap por defecto es nowrap, nos aseguramos que si no entran en línea disminuyan su tamaño en vez de saltar de línea, manteniéndose en todo momento una al lado de la otra y siempre con la misma separación entre ellas proveniente del gap. */
+
+            display: flex;
+            justify-content: center;
+            column-gap: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* En una query para celular ponemos las img apiladas y agregamos ahora un gap entre las filas reseteando a 0 el column-gap. */
+
+        @media screen and (max-width: 576px) {
+            #galeria {
+                flex-direction: column;
+                gap: 1rem 0;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Galería Fancybox</h1>
+
+    <div id="galeria">
+
+        <!-- Para que se aplique la galería, debemos respetar la estructura html que espera: la imagen pequeña se incluye en la etiqueta img que está contenida por un vínculo que apunta a la imagen grande desde su href (el href es la ruta a la imagen grande).
+            
+        También necesita el atributo data-fancybox con cualquier valor o directamente sin valor, siempre que varias imágenes tengan el mismo valor en este atributo, serán parte del mismo album o ciclo cuando está abierta y las navegamos con los botones anterior y siguiente (solo los que tengan el mismo valor se navegan en ciclo, si hay alguna/s con otro valor, se navegan aparte).
+        
+        Si queremos agregarle un texto que figure como título o descripción de la imagen por debajo de la misma cuando está abierta, agregamos el atributo data-caption (opcional). 
+        
+        Recordemos que los atributos data-... en realidad no existen como tal, html5 agregó el atributo data-... incompleto para que el desarrollador pueda invertar sus propios atributos con sus respectivos valores. 
+        
+        Los atributos inventados no tienen una función determinada ya que el navegador no los conoce, sin embargo, se podrán seleccionar desde CSS (por atributo=valor) y/o desde javaScript para darles la función personalizada que queramos. 
+        
+        Lo importante es que por tener el prefijo data- esos atributos son completamente válidos. Pero, por supuesto, que si los usamos sin su soporte de CSS o JS no tienen ninguna función (si usamos, por ejemplo, el atributo data-fancybox en otro proyecto sin linkear el CSS y el JS de la galería no harán nada por más que sean válidos). -->
+        
+        <a href="../imagenes/uno.jpg" data-fancybox="galeria" data-caption="Título 1">
+            <img src="../imagenes/miniaturas/uno_mini.jpg" alt="imagen">
+        </a>
+
+        <a href="../imagenes/dos.jpg" data-fancybox="galeria" data-caption="Título 2">
+            <img src="../imagenes/miniaturas/dos_mini.jpg" alt="imagen">
+        </a>
+
+        <a href="../imagenes/tres.jpg" data-fancybox="galeria" data-caption="Título 3">
+            <img src="../imagenes/miniaturas/tres_mini.jpg" alt="imagen">
+        </a>
+    </div>
+
+    <!-- LINKEAMOS EL JS DE LA GALERÍA DESDE UN CDN. ESTA GALERÍA ESTÁ PROGRAMADA CON JAVASCRIPT POR LO QUE NO SE NECESITA LINKEAR JQUERY. -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+    <!-- POR DEBAJO DE LA ETIQUETA ANTERIOR INCLUIMOS EL CÓDIGO DE ACTIVACIÓN DEL PLUGIN SIN EL CUAL NO FUNCIONA. -->
+    
+    <script>
+        Fancybox.bind();
+    </script>
+
+
+</body>
+
+</html>
