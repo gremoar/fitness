@@ -93,7 +93,7 @@ section:last-of-type {
     }
   
     #barra {
-        width: 200%;
+        width: 131.5%;
         height: calc(323vh - 4rem);
         position: absolute;
         top: 7.7rem;
@@ -121,6 +121,7 @@ section:last-of-type {
 }
 
 @media screen and (min-width: 320px){
+
 
     .contener {
         width: 1300px;
