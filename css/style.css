@@ -120,7 +120,7 @@ section:last-of-type {
     }
 }
 
-@media screen and (min-width: 320px){
+@media screen and (min-width: 320px) and (min-width: 480px) {
 
 
     .contener {
