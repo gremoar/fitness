@@ -7,6 +7,7 @@
 
 body
 {
+    overflow-x: hidden;
     font-family:Georgia, 'Times New Roman', Times, serif;
     background-color: #b1efc7;
     background-blend-mode:color;
@@ -899,7 +900,7 @@ color: #ffffff;
     .Logo1 img {
         width: 300px;
         height: 100px;
-        margin-left: 150px;
+        margin-left: 20px;
     }
 
 
