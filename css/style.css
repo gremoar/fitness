@@ -7,7 +7,6 @@
 
 body
 {
-    overflow-x: hidden;
     font-family:Georgia, 'Times New Roman', Times, serif;
     background-color: #b1efc7;
     background-blend-mode:color;
@@ -126,7 +125,7 @@ section:last-of-type {
 
     .contener {
         width: 1300px;
-        height: 480px;
+        height: auto;
       margin: auto;
     
       }
@@ -292,6 +291,7 @@ footer
  padding-bottom: 1%;
  color: #aaa;
  text-align: center;
+ overflow: hidden;
 }
 
 .titulo1
