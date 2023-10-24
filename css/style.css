@@ -125,7 +125,7 @@ section:last-of-type {
 
     .contener {
         width: 1300px;
-        height: auto;
+        height: 100%;
       margin: auto;
     
       }
@@ -506,7 +506,6 @@ color: #ffffff;
 
     .contener {
         width: 1300px;
-        height: 1183px;
       margin: auto;
       }
       .Logo1 img {
