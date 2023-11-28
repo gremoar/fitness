@@ -11,10 +11,10 @@
 
 <body>
     <div class="contener">
-
+    
     <header>
     <div class="Logo1">
-        <img src="./img/Logo.png" alt="">
+        <h1 class="logo">Logo</h1>
     </div>
     </header>
         <nav id="menu">
@@ -22,22 +22,22 @@
                 <li><a href="#menu">Abrir</a></li>
                 <li><a href="#">Cerrar</a></li>
             </ul>
-            <ul id="barra">
+            <ul class="Hamb" id="barra">
                 <div class="shift">
                     <ul>
                     <li><a href="#bienvenidos">Home Page</a></li>
-                    <li><a href="#productos">productos</a></li>
-                    <li><a href="#canal">Canal</a></li>
-                    <li><a href="#galeria">Galeria</a></li>
-                    <li><a href="#contacto">Nuestro Contacto</a></li>
+                    <li><a href="#canal">Channel</a></li>
+                    <li><a href="#galeria">Gallery</a></li>
+                    <li><a href="#productos">Products</a></li>
+                    <li><a href="#contacto">Contact</a></li>
                     </ul>
                 </div>
             </ul>
 
         </nav>
-    <div class="total">
-    <div class="container">
-        <div class="texto3" id="bienvenidos">
+<div class="total">
+    <section class="Present">
+        <div class="textInicio" id="bienvenidos">
         <h2>¿Quiénes Somos?</h2>
         <p> Somos un grupo aficionado por la cocina saludable y nutritiva. Nuestro objetivo es compartir con el mundo nuestra pasión por las recetas,
             la vida sana, los platillos sencillos o complejos y además de brindar una receta para las distintas metas que tengan nuestros usuarios.
@@ -50,27 +50,26 @@
             Sigue bajando para conocer mas sobre nuestra comunidad recetera, y entérate de todas las novedades siguiendonos en nuestras redes sociales.
             </p>
         </div>
-    </div>
-    <div class="container1">
-        <picture>
-            <source media="(max-width: 576px)" srcset="img/chefcito_c.jpg">
-            <source media="(max-width: 992px)" srcset="img/chefcito_t.jpg">
-            <img src="./img/chefcito.jpg" alt="foto">
-        </picture>
-</div>
-        <div class="container2">
+        <div class="container1">
+            <picture>
+                <source media="(max-width: 576px)" srcset="img/chefcito_c.jpg">
+                <source media="(max-width: 992px)" srcset="img/chefcito_t.jpg">
+                <img src="./img/chefcito.jpg" alt="foto">
+            </picture>
+    </section>
+    <section class="Bulk">
             <picture>
                 <source media="(max-width: 576px)" srcset="img/volumen_c.jpg">
                 <source media="(max-width: 992px)" srcset="img/volumen_t.jpg">
                 <img src="img/volumen.jpg" alt="Puesta de sol">
             </picture>
-    <div class="texto3">
+    <div class="textRight">
         <h2>Volumen</h2>
         <p>Si tu intención es aumentar tu masa muscular, ofrecemos un enorme catalogo de recetas altas en proteínas, además de muchos consejos sobre como empezar tu dieta proteica y complementarlo con el entrenamiento, teniendo en cuenta tu condición física y edad. 
         </p>
     </div>
-</div>
-    <div class="container3">
+    </section>
+    <section class="Cut">
     <div class="texto3">
         <h2>Pérdida de peso</h2>
         <p>Si tienes como objetivo perder uso kilos, tenemos recetas saludables y bajas en calorías, ¡pero igualmente deliciosas! Te daremos los mejores consejos para que te mantengas constante hasta lograr tu meta.</p>
@@ -80,21 +79,21 @@
         <source media="(max-width: 992px)" srcset="img/perdida_t.jpg">
         <img src="img/perdida.jpeg" alt="Puesta de sol">
         </picture>
-     </div>
-     <div class="container2">
+    </section>
+    <section class="Bulk">
         <picture>
             <source media="(max-width: 576px)" srcset="img/veganismo_c.jpg">
             <source media="(max-width: 992px)" srcset="img/veganismo_t.jpg">
-            <img src="img/veganismo.jpeg" alt="Puesta de sol">
+            <img id="ImgBulk" src="img/veganismo.jpeg" alt="Puesta de sol">
         </picture>
-        <div class="texto3">
+        <div class="textRight">
     <h2>Recetas veganas</h2>
     <p>Si eres vegano o estas planeando serlo, tenemos muchas opciones libres de carne muy ricas y nutritivas. Pierde el miedo y el prejuicio y 
         deléitate con nuestras recetas veganas, que además encontraras que son muy fáciles de hacer.
     </p>
         </div>
-      </div>
-      <div class="container3">
+    </section>
+    <section class="Cut">
         <div class="texto3">
             <h2>Tips saludables</h2>
             <p>Los mejores tips de cocina y vida saludable los encontraras en nuestra comunidad, mayormente en nuestro canal de YouTube, donde subimos video nuevo todos los sábados.</p>
@@ -104,21 +103,21 @@
             <source media="(max-width: 992px)" srcset="img/tips_t.jpg">
             <img src="img/tips.jpeg" alt="Puesta de sol">
             </picture>
-         </div>
+    </section>
 </div>
-
-   <div class="PartV" id="canal">
-    <h2>Video</h2>
+    <section class="PartV" id="canal">
+    <h2>Nuestro Canal</h2>
     <div class="video">
         <iframe class="contV" src="https://www.youtube.com/embed/qHAtOYC40pI?si=l12GXw0FsbXY8fPh" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
-   </div>
-   <div class="texto4">
-    <p>Si quieres preparar una comida rápida y saludable, ¡Checa este video! Esta y muchas otras recetas encontrarás en nuestro canal de YouTube. 
-        Para opciones personalizadas o recetas específicas visita nuestro canal o registrate para recibir notificaciones por Gmail con nuevas actualizaciones diarias de nuestro recetario. 
-        Visita nuestras redes sociales para enterarte de todas las novedades y revisa nuestro catálogo de productos</p>
-   </div>
-     <div class="Gallery" id="galeria">
+    <div class="texto4">
+        <p>Si quieres preparar una comida rápida y saludable, ¡Checa este video! Esta y muchas otras recetas encontrarás en nuestro canal de YouTube. 
+            Para opciones personalizadas o recetas específicas visita nuestro canal o registrate para recibir notificaciones por Gmail con nuevas actualizaciones diarias de nuestro recetario. 
+            Visita nuestras redes sociales para enterarte de todas las novedades y revisa nuestro catálogo de productos</p>
+    </div>
+    </section>
+
+<section class="Gallery" id="galeria">
         <h1>Galeria</h1>
     <a href="./img/fotos/imagen1.jpg" data-fancybox="fit" data-caption="Mustang" data-sources="./img/fotos/imagen1_c.jpg; ./img/fotos/imagen1_t.jpg"
     data-media="(max-width: 320px); (max-width: 576px);(max-width: 991px)">
@@ -148,14 +147,14 @@
     data-media="(max-width: 320px); (max-width: 576px);(max-width: 991px)">
         <img class="foto-mini" src="./img/fotos/imagen7.jpg" alt="foto">
     </a>
-</div>
+    </section>
 
-   <div class="titulo1" id="productos">
-    <h1>Productos</h1>
+<section class="mosaicos">
+    <div class="Prod" id="productos">
+        <h1>Productos</h1>
     </div>
 
-<div class="contenedor">
-
+    <div class="contenedor3">
     <div>
         <div class="texto1">
         <h1>Bolsa</h1>
@@ -165,7 +164,7 @@
             <source media="(max-width: 992px)" srcset="img/producto 1_t.jpg">
             <img src="img/producto 1.jpeg" class="caja" alt="caja">
 </div>
-    <div class="texto2">
+    <div class="textProd">
         <p>¡Presume nuestro delantal y tus habilidades culinarias!</p>
     </div>
     </div>
@@ -179,7 +178,7 @@
             <source media="(max-width: 992px)" srcset="img/producto 2_t.jpg">
             <img src="img/producto 2.jpeg" class="caja" alt="caja">
         </picture>
-    <div class="texto2">
+    <div class="textProd">
         <p>¡Esta Receta te presta nuestro mejor delantal!</p>
         </div>
     </div>
@@ -193,60 +192,58 @@
         <source media="(max-width: 992px)" srcset="img/producto 3_t.jpg">
         <img src="img/producto 3.jpeg" class="caja" alt="caja">
     </picture>
-    <div class="texto2">
+    <div class="textProd">
         <p>Lleva a tu trabajo nuestra taza para tus cafes mañaneros. ¡No te duermas!</p>
+    </div>
+    </div>
+</div>
+<div class="contenedor3">
+    <div>
+        <div class="texto1">
+        <h1>Avena</h1>
+        </div>
+        <picture>
+            <source media="(max-width: 576px)" srcset="img/producto 4_c.jpg">
+            <source media="(max-width: 992px)" srcset="img/producto 4_t.jpg">
+            <img src="img/producto 4.jpeg" class="caja" alt="caja">
+        </picture>
+    <div class="textProd">
+        <p>Tenemos recetas con avena para tus desayunos, y tenemos la taza perfecta</p>
+    </div>
+    </div>
+    
+    <div>
+        <div class="texto1">
+        <h1>Recetario</h1>
+        </div>
+        <picture>
+            <source media="(max-width: 576px)" srcset="img/producto 5_c.jpg">
+            <source media="(max-width: 992px)" srcset="img/producto 5_t.jpg">
+            <img src="img/producto 5.jpeg" class="caja" alt="caja">
+        </picture>
+    <div class="textProd">
+        <p> ¡Se el chef de tu hogar y deleita a tu familia con nuestras recetas! </p>
+        </div>
+    </div>
+    
+    <div>
+        <div class="texto1">
+        <h1>Taza de metal</h1>
+        </div>
+        <picture>
+            <source media="(max-width: 576px)" srcset="img/producto 6_c.jpg">
+            <source media="(max-width: 992px)" srcset="img/producto 6_t.jpg">
+            <img src="img/producto 6.jpeg" class="caja" alt="caja">
+        </picture>
+    <div class="textProd">
+        <p>¡Tazon gigante para calentar tus infusiones!</p>
     </div>
 </div>
     </div>
 
-    <div class="contenedor3">
-        <div>
-            <div class="texto1">
-            <h1>Avena</h1>
-            </div>
-            <picture>
-                <source media="(max-width: 576px)" srcset="img/producto 4_c.jpg">
-                <source media="(max-width: 992px)" srcset="img/producto 4_t.jpg">
-                <img src="img/producto 4.jpeg" class="caja" alt="caja">
-            </picture>
-        <div class="texto2">
-            <p>Tenemos recetas con avena para tus desayunos, y tenemos la taza perfecta</p>
-        </div>
-        </div>
-        
-        <div>
-            <div class="texto1">
-            <h1>Recetario</h1>
-            </div>
-            <picture>
-                <source media="(max-width: 576px)" srcset="img/producto 5_c.jpg">
-                <source media="(max-width: 992px)" srcset="img/producto 5_t.jpg">
-                <img src="img/producto 5.jpeg" class="caja" alt="caja">
-            </picture>
-        <div class="texto2">
-            <p> ¡Se el chef de tu hogar y deleita a tu familia con nuestras recetas! </p>
-            </div>
-        </div>
-        
-        <div>
-            <div class="texto1">
-            <h1>Taza de metal</h1>
-            </div>
-            <picture>
-                <source media="(max-width: 576px)" srcset="img/producto 6_c.jpg">
-                <source media="(max-width: 992px)" srcset="img/producto 6_t.jpg">
-                <img src="img/producto 6.jpeg" class="caja" alt="caja">
-            </picture>
-        <div class="texto2">
-            <p>¡Tazon gigante para calentar tus infusiones!</p>
-        </div>
-    </div>
-        </div>
+    </section>
 
-
-
-    
-<div class="copy" id="contacto">
+<section class="copy" id="contacto">
 
         <div class="info">
             
@@ -263,11 +260,11 @@
             </div>
 
         </div>
-    </div>
-</section>
+    </section>
+
 <footer>
- <p>" Autores:Matias Olivera Matias Olivera-Viera Fernanda-Vásquez Tomas-Miguens Benjamín DMM2DP turno mañana 2023" </p>
-   </footer>
+<p>" Autores:Olivera Matias Olivera-Viera Fernanda-Vásquez Tomas-Miguens Benjamín DMM2DP turno mañana 2023" </p>
+</footer>
     <script src="./galeria/03_fancybox/recursos/fancybox.umd.js"></script>
     <script>
         Fancybox.bind('[data-fancybox="fit"]', {
@@ -292,6 +289,7 @@
             }
         });   
     </script>
-  </body>
+    </div>
+</body>
 </html>
 
